@@ -9,4 +9,5 @@ Werkzeug==2.2.3
 WTForms==3.0.1
 SQLAlchemy==2.0.19
 gunicorn==21.2.0
+yagmail==0.15.293
 psycopg2-binary==2.9.6
