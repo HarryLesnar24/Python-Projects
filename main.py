@@ -12,8 +12,6 @@ from forms import CreatePostForm, RegisterForm, LoginForm, CommentForm
 import yagmail
 import os
 # Optional: add contact me email functionality (Day 60)
-# import smtplib
-
 
 
 '''
@@ -98,7 +96,7 @@ class Comment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     text = db.Column(db.Text, nullable=False)
     # Child relationship:"users.id" The users refers to the tablename of the User class.
-    # "comments" refers to the comments property in the User class.
+    # "Comments" refers to the comments property in the User class.
     author_id = db.Column(db.Integer, db.ForeignKey("users.id"))
     comment_author = relationship("User", back_populates="comments")
     # Child Relationship to the BlogPosts
@@ -114,7 +112,7 @@ with app.app_context():
 def admin_only(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
-        # If id is not 1 then return abort with 403 error
+        # If id is not 1, then return abort with 403 error
         if current_user.id != 1:
             return abort(403)
         # Otherwise continue with the route function
@@ -278,8 +276,8 @@ def contact():
         return render_template("contact.html", msg_sent=True, current_user=current_user)
     return render_template("contact.html", msg_sent=False, current_user=current_user)
 
-# Optional: You can inclue the email sending code from Day 60:
-# DON'T put your email and password here directly! The code will be visible when you upload to Github.
+# Optional: You can include the email sending code from Day 60:
+# DON'T put your email and password here directly! The code will be visible when you upload to GitHub.
 # Use environment variables instead (Day 35)
 
 
